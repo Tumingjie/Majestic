@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.gzhu</groupId>
-	<artifactId>funai</artifactId>
+	<groupId>com.majestic</groupId>
+	<artifactId>pkg</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>funai</name>
+	<name>pkg</name>
 	<description>Fun AI</description>
 	<packaging>war</packaging>
 
