@@ -44,7 +44,7 @@ public class JwtUtil {
         if(StringUtils.isEmpty(token)) {
             return null;
         }
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(TOKEN_SIGN_KEY).parseClaimsJws(token);
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(SIGNING_KEY).parseClaimsJws(token);
         Claims claims = claimsJws.getBody();
         return (String)claims.get("userId");
     }
@@ -57,7 +57,7 @@ public class JwtUtil {
             return "";
         }
         Jws<Claims> claimsJws
-                = Jwts.parser().setSigningKey(TOKEN_SIGN_KEY).parseClaimsJws(token);
+                = Jwts.parser().setSigningKey(SIGNING_KEY).parseClaimsJws(token);
         Claims claims = claimsJws.getBody();
         return (String)claims.get("userName");
     }
@@ -70,7 +70,7 @@ public class JwtUtil {
             return null;
         }
         Jws<Claims> claimsJws
-                = Jwts.parser().setSigningKey(TOKEN_SIGN_KEY).parseClaimsJws(token);
+                = Jwts.parser().setSigningKey(SIGNING_KEY).parseClaimsJws(token);
         Claims claims = claimsJws.getBody();
         return Integer.valueOf(String.valueOf(claims.get("userLevel")));
     }
@@ -81,7 +81,7 @@ public class JwtUtil {
     public static boolean isTokenExpired(String token) {
         try {
             // 创建一个JWT解析器
-            JwtParser parser = Jwts.parser().setSigningKey(TOKEN_SIGN_KEY);
+            JwtParser parser = Jwts.parser().setSigningKey(SIGNING_KEY);
             // 解析JWT token
             Jws<Claims> jws = parser.parseClaimsJws(token);
             // 从JWT token中获取到过期时间

@@ -27,6 +27,12 @@ import javax.validation.Valid;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+//{
+//        "userName": "SDY",
+//        "password": "123456",
+//        "phone": "13012312311",
+//        "code":"123"
+//}
 /**
  * @Author :wuxiaodong
  * @Date: 2023/3/16 14:58
@@ -87,13 +93,13 @@ public class UserController {
         String redisCode = stringRedisTemplate.opsForValue().get(
                 String.format(RedisKeys.USER_REGISTER_CODE, req.getPhone()));
 
-        if (StringUtils.isEmpty(redisCode)) {
-            return ReturnResult.error().message("验证码过期，请重新发送验证码");
-        }
-
-        if (!req.getCode().equals(redisCode)) {
-            return ReturnResult.error().message("验证码错误");
-        }
+//        if (StringUtils.isEmpty(redisCode)) {
+//            return ReturnResult.error().message("验证码过期，请重新发送验证码");
+//        }
+//
+//        if (!req.getCode().equals(redisCode)) {
+//            return ReturnResult.error().message("验证码错误");
+//        }
 
         // 删除验证码
         stringRedisTemplate.delete(String.format(RedisKeys.USER_REGISTER_CODE ,req.getPhone()));
