@@ -3,6 +3,7 @@ package com.majestic.pkg.utils;
 import io.jsonwebtoken.*;
 import org.springframework.util.StringUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 /**
@@ -18,6 +19,8 @@ public class JwtUtil {
     private static final int TOKEN_EXPIRATION = 1000*60*60*3;
     // token签名密钥
     private static final String TOKEN_SIGN_KEY = "pkg";
+    private static final byte[] SIGNING_KEY = TOKEN_SIGN_KEY.getBytes(StandardCharsets.UTF_8);
+
 
     /**
      * 创建前端token
@@ -29,7 +32,7 @@ public class JwtUtil {
                 .claim("userId", userId)
                 .claim("userName", userName)
                 .claim("userLevel", userLevel)
-                .signWith(SignatureAlgorithm.HS512, TOKEN_SIGN_KEY)
+                .signWith(SignatureAlgorithm.HS512, SIGNING_KEY)
                 .compressWith(CompressionCodecs.GZIP)
                 .compact();
     }
